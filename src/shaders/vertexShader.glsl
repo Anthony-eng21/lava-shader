@@ -100,8 +100,8 @@ float fbm(vec3 p) {
   float amplitude = .5;
   float frequency = 1.;
   
-  for (int i = 0; i < 5; i++) {
-    float n = 1.0 - abs(cnoise(p * frequency));
+  for (int i = 0; i < 6; i++) {
+    float n = 1. - abs(cnoise(p * frequency));
     n *= n; 
     value += n * amplitude;
     frequency *= 2.;
@@ -117,10 +117,10 @@ uniform float uTime;
 void main() {
   vUv = uv;
 
-  float nv = fbm(vec3(position * 1. + uTime * 0.1));
+  float nv = fbm(vec3(position * 1. + uTime * .1));
   vNoise = nv;
 
-  float disp = nv * 0.1; 
+  float disp = 1. - nv * .5; 
   vec3 newPos = position + (normal * disp);
 
   vec4 modelPosition = modelMatrix * vec4(newPos, 1.);

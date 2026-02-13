@@ -20,10 +20,9 @@ const material = new THREE.ShaderMaterial({
   },
   side: THREE.DoubleSide,
 });
-const geometry = new THREE.SphereGeometry(2, 256, 256);
+const geometry = new THREE.SphereGeometry(1, 256, 256);
 
 const lava = new THREE.Mesh(geometry, material);
-lava.rotateX(-45);
 scene.add(lava);
 
 /**
@@ -54,7 +53,9 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100,
 );
-camera.position.z = 6;
+
+camera.position.y = 1.5;
+camera.position.z = 5;
 camera.lookAt(0, 0, 0);
 // Controls
 const controls = new OrbitControls(camera, canvas);
